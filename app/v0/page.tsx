@@ -142,13 +142,13 @@ function V0Page() {
           <NavigationMenuItem>
             <NavigationMenuTrigger>Mentorship</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 grid-cols-1 md:grid-cols-2">
+              <ul className="grid w-[200px] gap-2 p-4 grid-cols-1">
                 {mentorshipComponents.map((component) => (
                   <ListItem
                     key={component.title}
                     title={component.title}
                     href={component.href}
-                    icon={component.icon}
+                    className="py-3"
                   />
                 ))}
               </ul>
@@ -212,10 +212,7 @@ function V0Page() {
                   className="relative h-8 w-8 rounded-full"
                 >
                   <Avatar>
-                    <AvatarImage
-                      src="/profile.png"
-                      alt="@ks"
-                    />
+                    <AvatarImage src="/profile.png" alt="@ks" />
                     <AvatarFallback>KS</AvatarFallback>
                   </Avatar>
                 </Button>
@@ -248,11 +245,10 @@ function V0Page() {
 
 interface ListItemProps extends React.ComponentPropsWithoutRef<"a"> {
   title: string;
-  icon?: React.ReactNode;
 }
 
 const ListItem = React.forwardRef<React.ElementRef<"a">, ListItemProps>(
-  ({ className, title, children, icon, ...props }, ref) => {
+  ({ className, title, children, ...props }, ref) => {
     return (
       <li>
         <NavigationMenuLink asChild>
@@ -264,16 +260,13 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, ListItemProps>(
             )}
             {...props}
           >
-            <div className="space-y-1 flex gap-4">
-              {icon && <div className="text-green-200">{icon}</div>}
-              <div>
-                <div className="text-sm font-medium leading-none">{title}</div>
-                {children && (
-                  <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                    {children}
-                  </p>
-                )}
-              </div>
+            <div className="space-y-1">
+              <div className="text-sm font-medium leading-none">{title}</div>
+              {children && (
+                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                  {children}
+                </p>
+              )}
             </div>
             <CornerRightUp className="h-3 w-3 text-base hidden group-hover:block" />
           </a>
